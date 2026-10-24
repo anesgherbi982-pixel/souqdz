@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SouqDZ — Le commerce local, bien pensé</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+:root{--paper:#f7f6f2;--surface:#fffefa;--ink:#24342f;--muted:#718078;--line:#e7e8df;--green:#285b4b;--green2:#dce9df;--clay:#c87855;--claylite:#f4e5db;--yellow:#e8c77b;--shadow:0 10px 32px #23362b0a}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.55 "DM Sans",system-ui,sans-serif}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+header{background:rgba(255,254,250,.93);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:8;backdrop-filter:blur(12px)}
+.nav{max-width:1200px;margin:auto;padding:13px 25px;display:flex;align-items:center;gap:22px}.brand{font:800 23px Manrope,sans-serif;letter-spacing:-1.1px}.brand i{font-style:normal;color:var(--clay)}.navlinks{display:flex;gap:21px;color:#627168;font-size:13px}.navlinks a:hover{color:var(--green)}.grow{flex:1}.pill,.quiet,.solid,.cart{border-radius:10px;padding:9px 13px;font-weight:700;font-size:13px}.pill,.quiet{background:transparent;border:1px solid var(--line);color:var(--ink)}.solid{background:var(--green);color:white;border:1px solid var(--green)}.solid:hover{background:#204a3d}.cart{background:var(--green2);color:var(--green);border:0}
+.wrap{max-width:1200px;margin:auto;padding:30px 25px 60px}
+.hero{display:grid;grid-template-columns:1.03fr .97fr;background:#ebece2;border-radius:23px;overflow:hidden;min-height:350px}
+.hero-copy{padding:clamp(25px,4.5vw,56px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.kicker{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);font-weight:800}
+h1,h2,h3{font-family:Manrope,sans-serif;letter-spacing:-.8px}h1{font-size:clamp(33px,4vw,51px);line-height:1.08;margin:13px 0 14px;font-weight:800;max-width:550px} .hero p{color:#637168;max-width:440px;margin:0;font-size:15px}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:24px}.hero-visual{position:relative;min-height:300px;display:grid;place-items:center;background:linear-gradient(135deg,#e0e7d9,#f0d9c8)}
+.stilllife{width:min(310px,78%);height:270px;position:relative;display:grid;place-items:center}
+.ceramic{position:absolute;width:155px;height:190px;bottom:24px;left:35px;background:linear-gradient(110deg,#b86f4e,#d99a72);border-radius:45% 45% 28% 28%;box-shadow:inset -18px -4px 20px #8b4b3430;transform:rotate(-7deg)}
+.ceramic:before{content:"";position:absolute;top:-14px;left:49px;width:57px;height:25px;border-radius:50%;background:#e5b08c;border:7px solid #bb7654}
+.leaf{position:absolute;width:105px;height:155px;right:28px;top:25px;background:#5e8068;border-radius:100% 0 100% 0;transform:rotate(26deg);box-shadow:20px 48px 0 -17px #78987b}
+.sun{position:absolute;width:95px;height:95px;border-radius:50%;background:#e9c67a;right:15px;top:25px;mix-blend-mode:multiply}
+.sticker{position:absolute;background:#fffefa;border:1px solid #e3e1d7;border-radius:12px;padding:10px 13px;box-shadow:var(--shadow);font-size:12px;font-weight:700}.sticker.a{left:18px;top:22px}.sticker.b{right:16px;bottom:22px;color:var(--green)}
+.trustline{display:flex;gap:18px;flex-wrap:wrap;padding:16px 3px 5px;color:#718078;font-size:12px}.trustline span:before{content:"✓";color:var(--green);font-weight:900;margin-right:7px}
+.headrow{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:36px 0 17px}.headrow h2{font-size:24px;margin:0}.headrow p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px}.search{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 13px;min-width:200px;flex:1;max-width:350px}.chips{display:flex;gap:7px;flex-wrap:wrap}.chip{border:1px solid var(--line);background:var(--surface);color:#69766e;border-radius:999px;padding:7px 12px;font-size:12px}.chip.on{background:var(--green);border-color:var(--green);color:white}
+.catalog{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.item{border:1px solid var(--line);background:var(--surface);border-radius:16px;overflow:hidden;transition:transform .2s,box-shadow .2s}.item:hover{transform:translateY(-3px);box-shadow:0 12px 26px #20352a0d}.product-art{height:180px;display:grid;place-items:center;position:relative;background:#eeece4;font-size:61px}.product-art[data-tone="rose"]{background:#f1e2db}.product-art[data-tone="sage"]{background:#e1e9df}.product-art[data-tone="blue"]{background:#e3e9e9}.mini-label{position:absolute;left:11px;top:11px;background:#fffefa;border-radius:7px;padding:4px 7px;font-size:10px;font-weight:800;color:#52645a}.item-info{padding:13px}.item-title{font-weight:700;font-size:14px}.item-meta{font-size:11px;color:var(--muted);margin:3px 0 12px}.item-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px}.price{font-weight:800;font-size:15px;letter-spacing:-.3px}.add{background:#e2ebe2;color:var(--green);border:0;border-radius:9px;padding:8px 10px;font-weight:800;font-size:12px}.add:hover{background:#d2e2d4}
+.lower{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px}.note-card{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:21px}.note-card h3{font-size:17px;margin:7px 0}.note-card p{color:var(--muted);font-size:13px;margin:0}.iconbox{width:34px;height:34px;border-radius:10px;background:var(--green2);display:grid;place-items:center;color:var(--green)}
+.dashboard{display:none;margin-top:30px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px}.dash-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.dash-top h2{margin:0;font-size:22px}.demo{font-size:11px;color:#8b715b;background:#f5e9dc;border-radius:7px;padding:5px 8px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}.stat{border:1px solid var(--line);border-radius:12px;padding:13px}.stat small{color:var(--muted);font-size:11px}.stat strong{display:block;font:800 22px Manrope;margin-top:5px}.stat em{font-style:normal;color:var(--green);font-size:11px}.dash-tabs{display:flex;gap:7px;border-bottom:1px solid var(--line);padding-bottom:11px;margin-bottom:12px}.tab{border:0;background:transparent;color:var(--muted);padding:7px 10px;border-radius:8px;font-size:12px}.tab.sel{background:var(--green2);color:var(--green);font-weight:800}.orders{width:100%;border-collapse:collapse}.orders th,.orders td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line);font-size:12px}.orders th{color:var(--muted);font-weight:600}.status{display:inline-block;background:#e1eee3;color:#34634a;border-radius:7px;padding:4px 7px;font-size:10px;font-weight:800}.status.wait{background:#f5e8d9;color:#98653e}
+footer{background:#eeece4;border-top:1px solid #e1e1d8;padding:25px;text-align:center;color:#738078;font-size:12px}
+.overlay{display:none;position:fixed;inset:0;background:#17251f66;z-index:20;place-items:center;padding:18px}.modal{background:var(--surface);border-radius:18px;width:min(480px,100%);padding:24px;box-shadow:0 24px 70px #0002}.modal h2{margin:0 0 7px;font-size:23px}.modal p{color:var(--muted);font-size:13px;margin:0 0 16px}.field{margin:12px 0}.field label{display:block;font-size:12px;font-weight:700;margin-bottom:5px}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px;background:white}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.toast{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#24342f;color:white;padding:12px 17px;border-radius:10px;z-index:25;font-size:13px}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.hero-visual{min-height:245px}.catalog{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.navlinks{display:none}.lower{grid-template-columns:1fr}}/* Motion system: restrained, purposeful, respects reduced-motion */
+html{scroll-behavior:smooth}
+@keyframes riseIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes softFade{from{opacity:0}to{opacity:1}}
+@keyframes floatSlow{0%,100%{transform:translateY(0) rotate(-7deg)}50%{transform:translateY(-9px) rotate(-4deg)}}
+@keyframes leafSway{0%,100%{transform:rotate(26deg)}50%{transform:rotate(34deg)}}
+@keyframes sunPulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.06);opacity:1}}
+@keyframes shimmer{0%{background-position:120% 0}100%{background-position:-120% 0}}
+@keyframes cartPop{0%{transform:scale(.8)}55%{transform:scale(1.18)}100%{transform:scale(1)}}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,12px)}to{opacity:1;transform:translate(-50%,0)}}
+.hero-copy>*{animation:riseIn .65s both;animation-timing-function:cubic-bezier(.2,.75,.25,1)}
+.hero-copy .kicker{animation-delay:.06s}.hero-copy h1{animation-delay:.13s}.hero-copy p{animation-delay:.2s}.hero-copy .actions{animation-delay:.28s}
+.hero-visual .ceramic{animation:floatSlow 6s ease-in-out infinite;transform-origin:50% 80%}
+.hero-visual .leaf{animation:leafSway 7s ease-in-out infinite}
+.hero-visual .sun{animation:sunPulse 5s ease-in-out infinite}
+.sticker{animation:riseIn .7s .3s both}
+.item{opacity:0;animation:riseIn .55s cubic-bezier(.2,.7,.2,1) forwards}
+.item:nth-child(1){animation-delay:.04s}.item:nth-child(2){animation-delay:.10s}.item:nth-child(3){animation-delay:.16s}.item:nth-child(4){animation-delay:.22s}.item:nth-child(n+5){animation-delay:.06s}
+.item .product-art{transition:transform .35s cubic-bezier(.2,.7,.2,1),filter .35s}
+.item:hover .product-art{filter:saturate(1.08)}.item:hover .product-art>span:not(.mini-label){transform:scale(1.08) rotate(-3deg)}
+.product-art>span:not(.mini-label){transition:transform .35s}
+.solid,.quiet,.pill,.cart,.chip,.add,.tab{transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s}
+.solid:hover,.add:hover{transform:translateY(-1px);box-shadow:0 5px 13px #285b4b20}
+button:active{transform:scale(.97)}
+.chip{transition:all .22s cubic-bezier(.2,.7,.2,1)}.chip.on{box-shadow:0 3px 9px #285b4b20}
+.dashboard{animation:riseIn .4s both}
+.stat{transition:transform .2s,background .2s}.stat:hover{transform:translateY(-2px);background:#fbfcf8}
+.overlay{backdrop-filter:blur(5px);animation:softFade .2s}.modal{animation:riseIn .28s cubic-bezier(.2,.8,.2,1)}
+.toast{animation:toastIn .25s both}
+.cart.bump{animation:cartPop .38s}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+<a class="brand" href="#">souq<i>dz</i></a>
+<nav class="navlinks"><a href="#catalog" data-t="nav_shop">Boutique</a><a href="#how" data-t="nav_how">Comment ça marche</a><a href="#seller" data-t="nav_seller">Pour les vendeurs</a></nav>
+<div class="grow"></div><button class="pill" id="language">EN</button><button class="quiet" id="sellerBtn" data-t="seller_login">Espace vendeur</button><button class="cart" id="cartBtn">Panier <span id="count">0</span></button>
+</div></header>
+<main class="wrap">
+<section class="hero">
+<div class="hero-copy"><div class="kicker" data-t="kicker">Les bonnes trouvailles, près de chez vous</div><h1 data-t="hero_title">Des boutiques locales.<br>De belles découvertes.</h1><p data-t="hero_desc">Explorez une sélection de produits de vendeurs algériens. Une expérience simple, chaleureuse et faite pour le quotidien.</p><div class="actions"><button class="solid" onclick="document.querySelector('#catalog').scrollIntoView({behavior:'smooth'})" data-t="explore">Explorer les produits</button><button class="quiet" id="openSeller" data-t="start_selling">Je veux vendre</button></div></div>
+<div class="hero-visual"><div class="sun"></div><div class="leaf"></div><div class="ceramic"></div><div class="sticker a">✳ Sélection locale</div><div class="sticker b">Livraison selon votre wilaya</div></div>
+</section>
+<div class="trustline"><span data-t="trust1">Prix affichés en dinars</span><span data-t="trust2">Vendeurs indépendants</span><span data-t="trust3">Commande simple</span></div>
+<section id="catalog"><div class="headrow"><div><h2 data-t="catalog_title">À découvrir cette semaine</h2><p data-t="catalog_sub">Des objets utiles, des petits plaisirs, des créateurs d’ici.</p></div></div>
+<div class="tools"><input class="search" id="search" placeholder="Rechercher dans la boutique"><div class="chips" id="chips"></div></div><div class="catalog" id="products"></div></section>
+<section class="lower" id="how">
+<div class="note-card"><div class="iconbox">⌁</div><h3 data-t="how_title">Acheter, sans complication</h3><p data-t="how_desc">Parcourez les articles, ajoutez vos favoris au panier et préparez votre commande. Les options de paiement et de livraison seront confirmées par le vendeur.</p></div>
+<div class="note-card" id="seller"><div class="iconbox">↗</div><h3 data-t="seller_title">Votre activité mérite sa vitrine</h3><p data-t="seller_desc">Présentez vos produits, gardez vos commandes organisées et développez votre boutique à votre rythme. La démonstration vendeur ci-dessous montre une première idée de l’espace de gestion.</p></div>
+</section>
+<section class="dashboard" id="dashboard"><div class="dash-top"><div><div class="kicker" data-t="dash_kicker">Espace boutique · Démo</div><h2 data-t="dash_title">Bonjour, votre boutique</h2></div><span class="demo" data-t="demo_badge">Données fictives</span><button class="solid" id="newProduct" data-t="new_product">+ Nouveau produit</button></div>
+<div class="stats"><div class="stat"><small data-t="stat_sales">Ventes (7 jours)</small><strong>48 600 <small>DZD</small></strong><em>↑ 8,2 %</em></div><div class="stat"><small data-t="stat_orders">Commandes</small><strong>24</strong><em data-t="stat_vs">sur 7 jours</em></div><div class="stat"><small data-t="stat_pending">À confirmer</small><strong id="pending">3</strong><em data-t="stat_action">À traiter</em></div><div class="stat"><small data-t="stat_stock">Stock faible</small><strong>2</strong><em data-t="stat_attention">À surveiller</em></div></div>
+<div class="dash-tabs"><button class="tab sel" data-tab="orders" data-t="tab_orders">Commandes</button><button class="tab" data-tab="inventory" data-t="tab_inventory">Produits</button></div><div id="dashContent"></div>
+</section>
+</main><footer>souqdz · <span data-t="footer">Prototype d’expérience — aucun paiement ni transporteur n’est connecté.</span></footer>
+<div class="overlay" id="overlay"><div class="modal"><h2 data-t="modal_title">Ajouter un produit</h2><p data-t="modal_desc">Ajoutez un article à la vitrine de démonstration.</p><form id="form"><div class="field"><label data-t="f_name">Nom du produit</label><input id="name" required placeholder="Ex. Vase en céramique"></div><div class="field"><label data-t="f_price">Prix (DZD)</label><input id="price" type="number" min="1" required></div><div class="field"><label data-t="f_cat">Catégorie</label><select id="cat"><option value="Maison">Maison</option><option value="Mode">Mode</option><option value="Tech">Tech</option><option value="Bien-être">Bien-être</option></select></div><div class="field"><label data-t="f_stock">Quantité en stock</label><input id="stock" type="number" min="0" value="5" required></div><div class="modal-actions"><button type="button" class="quiet" id="cancel" data-t="cancel">Annuler</button><button class="solid" data-t="save">Enregistrer</button></div></form></div></div><div class="toast" id="toast"></div><script>
+const translations = {
+  fr: {
+    add: "Ajouter au panier",
+    added: "Produit ajouté au panier",
+    empty: "Votre panier est vide",
+    all: "Tous",
+    success: "Action effectuée"
+  },
+  en: {
+    add: "Add to cart",
+    added: "Product added to cart",
+    empty: "Your cart is empty",
+    all: "All",
+    success: "Done"
+  }
+};
+
+let language = "fr";
+let cartCount = 0;
+
+const text = key => translations[language][key] || key;
+const $ = selector => document.querySelector(selector);
+
+function showToast(message) {
+  const toast = $("#toast");
+  if (!toast) {
+    alert(message);
+    return;
+  }
+  toast.textContent = message;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2200);
+}
+
+function updateCart() {
+  const cart = $("#cart-count");
+  if (cart) cart.textContent = cartCount;
+
+  const cartLabel = $("#cart");
+  if (cartLabel) cartLabel.setAttribute("aria-label", `${cartCount} items`);
+}
+
+function addToCart() {
+  cartCount++;
+  updateCart();
+  showToast(text("added"));
+}
+
+function changeLanguage() {
+  language = language === "fr" ? "en" : "fr";
+  const languageButton = $("#language");
+  if (languageButton) {
+    languageButton.textContent = language.toUpperCase();
+  }
+
+  document.documentElement.lang = language;
+
+  // Met à jour les éléments qui possèdent un attribut data-i18n.
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    const key = element.dataset.i18n;
+    if (translations[language][key]) {
+      element.textContent = translations[language][key];
+    }
+  });
+}
+
+// Bouton de langue, s'il existe dans la page.
+$("#language")?.addEventListener("click", changeLanguage);
+
+// Boutons d'ajout au panier : ajoutez data-add-cart à vos boutons HTML.
+document.querySelectorAll("[data-add-cart]").forEach(button => {
+  button.addEventListener("click", addToCart);
+});
+
+// Filtres de produits : les boutons peuvent utiliser data-filter.
+document.querySelectorAll("[data-filter]").forEach(button => {
+  button.addEventListener("click", () => {
+    const filter = button.dataset.filter;
+
+    document.querySelectorAll("[data-category]").forEach(product => {
+      const category = product.dataset.category;
+      product.hidden = filter !== "all" && category !== filter;
+    });
+  });
+});
+
+// Affiche un message quand l'utilisateur clique sur le panier.
+$("#cart")?.addEventListener("click", () => {
+  showToast(cartCount ? `${cartCount} produit(s) dans le panier` : text("empty"));
+});
+
+updateCart();
+</script>
+</body>
+</html>
